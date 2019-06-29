@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.api;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.laptrinhjavaweb.dto.NewDTO;
 
-@CrossOrigin
 @RestController
 public class NewAPI {
 
