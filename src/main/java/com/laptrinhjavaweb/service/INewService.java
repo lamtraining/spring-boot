@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.service;
 
-public interface INewService {
+import com.laptrinhjavaweb.dto.NewDTO;
 
+public interface INewService {
+	NewDTO save(NewDTO newDTO);
 }
