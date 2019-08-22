@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +24,10 @@ public class NewAPI {
 		return newService.save(model);
 	}
 	
-	@PutMapping(value = "/new")
-	public NewDTO updateNew(@RequestBody NewDTO model) {
-		return model;
+	@PutMapping(value = "/new/{id}")
+	public NewDTO updateNew(@RequestBody NewDTO model, @PathVariable("id") long id) {
+		model.setId(id);
+		return newService.save(model);
 	}
 	
 	@DeleteMapping(value = "/new")
