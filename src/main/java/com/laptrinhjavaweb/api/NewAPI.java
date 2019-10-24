@@ -25,13 +25,17 @@ public class NewAPI {
 	private INewService newService;
 	
 	@GetMapping(value = "/new")
-	public NewOutput showNew(@RequestParam("page") int page,
-							 @RequestParam("limit") int limit) {
+	public NewOutput showNew(@RequestParam(value = "page", required = false) Integer page,
+							 @RequestParam(value = "limit", required = false) Integer limit) {
 		NewOutput result = new NewOutput();
-		result.setPage(page);
-		Pageable pageable = new PageRequest(page - 1, limit);
-		result.setListResult(newService.findAll(pageable));
-		result.setTotalPage((int) Math.ceil((double) (newService.totalItem()) / limit));
+		if (page != null && limit != null) {
+			result.setPage(page);
+			Pageable pageable = new PageRequest(page - 1, limit);
+			result.setListResult(newService.findAll(pageable));
+			result.setTotalPage((int) Math.ceil((double) (newService.totalItem()) / limit));
+		} else {
+			result.setListResult(newService.findAll());
+		}
 		return result;
 	}
 
